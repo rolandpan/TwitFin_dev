@@ -19,19 +19,19 @@ Features
 Getting started (development)
 -----------------------------
 
-First, `git clone` this repo and `cd` into the new directory.
+First, ``git clone`` this repo and ``cd`` into the new directory.
 
-Create a new virtual environment: `virtualenv -p python3 venv`
+Create a new virtual environment: ``virtualenv -p python3 venv``
 
-Activate the new environment: `source venv/bin/activate`
+Activate the new environment: ``source venv/bin/activate``
 
-Install the required packages: `pip install -r requirements.txt`
+Install the required packages: ``pip install -r requirements.txt``
 
 
 Running notebook examples
 -------------------------
 
-Start the notebook server: `jupyter notebook`
+After starting virtual environment and installing the required package, start the notebook server with the command: ``jupyter notebook``
 
 
 Contributing
@@ -39,6 +39,9 @@ Contributing
 
 Fork the repo, create a new feature branch, commit changes and submit a pull request.
 
+
+Package info
+------------
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.5
