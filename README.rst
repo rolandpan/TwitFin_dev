@@ -4,6 +4,7 @@ TwitFin_dev
 
 ``TwitFin_dev`` - Description of your python package
 
+
 Features
 --------
 
@@ -14,6 +15,33 @@ Features
 * Create or append data store (csv or SQL)
 * ...
 
+
+Getting started (development)
+-----------------------------
+
+First, ``git clone`` this repo and ``cd`` into the new directory.
+
+Create a new virtual environment: ``virtualenv -p python3 venv``
+
+Activate the new environment: ``source venv/bin/activate``
+
+Install the required packages: ``pip install -r requirements.txt``
+
+Set environment variables if accessing the Quandl API: ``export QUANDL_TOKEN="your-secret-key"``
+
+
+Running notebook examples
+-------------------------
+
+Step into the notebooks directory: ``cd examples/notebooks``
+
+Start the notebook server with the command: ``jupyter notebook``
+
+Interact with the notebooks in your browser at ``http://localhost:8888``
+
+
+Package info
+------------
 
 ==============  ==========================================================
 Python support  Python 2.7, >= 3.5
@@ -45,3 +73,9 @@ tests           .. code-block:: bash
 .. _BSD: http://opensource.org/licenses/BSD-3-Clause
 .. _Documentation: http://TwitFin.readthedocs.org/en/latest/
 .. _API: http://TwitFin.readthedocs.org/en/latest/api.html
+
+
+Contributing
+------------
+
+Refer to CONTRIBUTING.rst
