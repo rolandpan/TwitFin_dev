@@ -10,7 +10,7 @@ Features
 
 * Import Quandl data
 * Convert to time series
-* Perform Moving Average Convergence Divergence and flag runs
+* Perform Moving Average Convergence Divergence and flag flips
 * ...
 * Create or append data store (csv or SQL)
 * ...
