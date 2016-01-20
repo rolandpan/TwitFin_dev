@@ -31,13 +31,11 @@ Install the required packages: ``pip install -r requirements.txt``
 Running notebook examples
 -------------------------
 
-After starting virtual environment and installing the required package, start the notebook server with the command: ``jupyter notebook``
+Step into the notebooks directory: ``cd examples/notebooks``
 
+Start the notebook server with the command: ``jupyter notebook``
 
-Contributing
-------------
-
-Fork the repo, create a new feature branch, commit changes and submit a pull request.
+Interact with the notebooks in your browser at ``http://localhost:8888``
 
 
 Package info
@@ -73,3 +71,9 @@ tests           .. code-block:: bash
 .. _BSD: http://opensource.org/licenses/BSD-3-Clause
 .. _Documentation: http://TwitFin.readthedocs.org/en/latest/
 .. _API: http://TwitFin.readthedocs.org/en/latest/api.html
+
+
+Contributing
+------------
+
+Refer to CONTRIBUTING.rst
