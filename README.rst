@@ -4,6 +4,7 @@ TwitFin_dev
 
 ``TwitFin_dev`` - Description of your python package
 
+
 Features
 --------
 
@@ -13,6 +14,30 @@ Features
 * ...
 * Create or append data store (csv or SQL)
 * ...
+
+
+Getting started (development)
+-----------------------------
+
+First, `git clone` this repo and `cd` into the new directory.
+
+Create a new virtual environment: `virtualenv -p python3 venv`
+
+Activate the new environment: `source venv/bin/activate`
+
+Install the required packages: `pip install -r requirements.txt`
+
+
+Running notebook examples
+-------------------------
+
+Start the notebook server: `jupyter notebook`
+
+
+Contributing
+------------
+
+Fork the repo, create a new feature branch, commit changes and submit a pull request.
 
 
 ==============  ==========================================================
