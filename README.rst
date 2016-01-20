@@ -27,6 +27,8 @@ Activate the new environment: ``source venv/bin/activate``
 
 Install the required packages: ``pip install -r requirements.txt``
 
+Set environment variables if accessing the Quandl API: ``export QUANDL_TOKEN="your-secret-key"``
+
 
 Running notebook examples
 -------------------------
