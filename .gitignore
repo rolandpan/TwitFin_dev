@@ -47,3 +47,6 @@ docs/_build
 # Environments
 venv
 .env
+
+# Notebook checkpoints
+.ipynb_checkpoints
