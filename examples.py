@@ -52,8 +52,8 @@ if __name__ == "__main__":
     # print(df_test.tail())
 
     # To write data to sql table
-    db = db_connection('sqlite:///data/dev.db')
-    df.to_sql('example', db, if_exists='replace')
+    # db = db_connection('sqlite:///data/dev.db')
+    # df.to_sql('example', db, if_exists='replace')
     # print('\nData saved to data/dev.db/gspc')
 
     # To read data from sql table
