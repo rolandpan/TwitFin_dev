@@ -66,14 +66,15 @@ class twitfin(object):
         print('%d rows loaded into dataframe.' % row_count)
         return df
 
-    def read_csv(filename, *args, **kwargs):
-        """read_csv is a port of the Pandas read_csv module."""
-        return pd.read_csv(filename, *args)
 
-    def read_sql(table, db, *args, **kwargs):
-        """read_sql is a port of the Pandas read_sql module."""
-        return pd.read_sql(table, db, *args, **kwargs)
+def read_csv(filename, *args, **kwargs):
+    """read_csv is a port of the Pandas read_csv module."""
+    return pd.read_csv(filename, *args)
 
-    def db_connection(uri):
-        """db_connection is a port of the SQLAlchemy create_engine module."""
-        return sqlalchemy.create_engine(uri)
+def read_sql(table, db, *args, **kwargs):
+    """read_sql is a port of the Pandas read_sql module."""
+    return pd.read_sql(table, db, *args, **kwargs)
+
+def db_connection(uri):
+    """db_connection is a port of the SQLAlchemy create_engine module."""
+    return sqlalchemy.create_engine(uri)

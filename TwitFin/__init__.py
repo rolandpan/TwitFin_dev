@@ -12,4 +12,4 @@ Description of your python package
 from __future__ import absolute_import, division, print_function, \
     with_statement, unicode_literals
 
-from .twitfin import twitfin
+from .twitfin import twitfin, read_csv, read_sql, db_connection
