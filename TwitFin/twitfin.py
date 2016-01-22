@@ -40,8 +40,8 @@ class twitfin(object):
             print('anOptionalArg: %s' % anOptionalArg)
 
     def load(ticker):
-        """Load data from Quandl into a dataframe, modify
-        column names and check for non-numeric values."""
+        """Load data from Quandl into a dataframe, modify column names and
+        check for non-numeric values."""
         # Grab the Quandl token
         token = os.environ.get('QUANDL_TOKEN')
         if token is None:
@@ -67,10 +67,13 @@ class twitfin(object):
         return df
 
     def read_csv(filename, *args, **kwargs):
+        """read_csv is a port of the Pandas read_csv module."""
         return pd.read_csv(filename, *args)
 
     def read_sql(table, db, *args, **kwargs):
-         return pd.read_sql(table, db, *args, **kwargs)
+        """read_sql is a port of the Pandas read_sql module."""
+        return pd.read_sql(table, db, *args, **kwargs)
 
     def db_connection(uri):
+        """db_connection is a port of the SQLAlchemy create_engine module."""
         return sqlalchemy.create_engine(uri)
