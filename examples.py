@@ -1,4 +1,4 @@
-from twitfin import twitfin
+from TwitFin import twitfin
 
 
 # To load Quandl data into a dataframe run:
