@@ -89,6 +89,11 @@ class twitfin(object):
     def diff(df, column_a, column_b, **kwargs):
         """Creates a new column from the differnce of column_a and column_b,
         as column_a minus column_b."""
+        ### diff function parameters
+        # 1st parameter: target dataframe
+        # 2nd parameter: target column_a
+        # 3rd parameter: target column_b
+        # TODO: describe default label and custom label options
         column_a_suffix = column_a.split('_')[-1]
         column_b_suffix = column_b.split('_')[-1]
         column_prefix = "_".join(column_b.split('_')[0:2])
@@ -103,6 +108,11 @@ class twitfin(object):
         """Given a dataframe and column and a minimum sequence period
         for the same sign, the function returns: "1" for upward swings,
         "-1" for downward swings, or "0" if niether condition is met."""
+        ### flag_swings function parameters
+        # 1st parameter: target dataframe
+        # 2nd parameter: target column
+        # 3rd parameter: minimum swing period
+        # TODO: describe default label and custom label options
         if 'label' in kwargs:
             # Append custom label with period days
             column_label = kwargs['label'] + '_' + str(period) + '-day'
@@ -148,11 +158,13 @@ class twitfin(object):
 
     def x_days(df):
         """Add a column with a descending counter."""
+        # One paramter: target dataframe
         df['x-day'] = ['x-' + str(i) for i in range(len(df) - 1, -1, -1)]
         return df
 
     def x_transpose(df):
         """Transpose the dataframe and set the x-days as the column labels."""
+        # One paramter: target dataframe, assumes an x-day column has been created
         df = df.set_index('x-day')
         df = df.transpose()
         pd.options.display.float_format = '{:.3f}'.format
