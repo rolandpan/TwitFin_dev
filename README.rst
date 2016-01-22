@@ -30,10 +30,16 @@ Install the required packages: ``pip install -r requirements.txt``
 Set environment variables if accessing the Quandl API: ``export QUANDL_TOKEN="your-secret-key"``
 
 
-Running notebook examples
--------------------------
+Running examples.py
+-----------------
 
-Step into the notebooks directory: ``cd examples/notebooks``
+Run: ``python examples.py``
+
+
+Running notebooks
+-----------------
+
+Step into the notebooks directory: ``cd notebooks``
 
 Start the notebook server with the command: ``jupyter notebook``
 
