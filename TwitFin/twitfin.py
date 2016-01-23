@@ -153,7 +153,13 @@ class twitfin(object):
                     # but prior minimum sign sequence period criteria was not met.
                     return 0
 
-        df[column_label] = [flagger(n, p, r, s, period) for n, p, r, s in zip(tmp['sign-0'], tmp['sign-1'], tmp['sum-shift'], tmp['sum'])]
+        try:
+            df = df.copy()
+            df[column_label] = [flagger(n, p, r, s, period) for n, p, r, s in zip(tmp['sign-0'], tmp['sign-1'], tmp['sum-shift'], tmp['sum'])]
+        except Exception as e:
+            print(e)
+            if e =='SettingWithCopyWarning':
+                pass
         return df
 
     def x_days(df):

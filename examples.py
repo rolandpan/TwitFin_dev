@@ -5,12 +5,11 @@ from TwitFin import twitfin, read_csv, db_connection, read_sql
 
 
 def main(*args, **kwargs):
-    """Group TwitFin functions to be executed as a complete workflow.
-    (Uncomment print functions for verbose output)."""
+    """A collection of TwitFin functions to be executed as a complete workflow."""
 
     # Load Quandl data into a dataframe
     df = twitfin.load("YAHOO/INDEX_GSPC")
-    # print(df.tail())  # Inspect the loaded data
+    # print(df.tail())  # Inspect the loaded data via terminal output
 
     # Add a column with long and short simple moving average columns
     df = twitfin.sma(df, 'GSPC_Close', 20)
@@ -53,8 +52,8 @@ if __name__ == "__main__":
     # print(df_test.tail())
 
     # To write data to sql table
-    db = db_connection('sqlite:///data/dev.db')
-    df.to_sql('example', db, if_exists='replace')
+    # db = db_connection('sqlite:///data/dev.db')
+    # df.to_sql('example', db, if_exists='replace')
     # print('\nData saved to data/dev.db/gspc')
 
     # To read data from sql table
