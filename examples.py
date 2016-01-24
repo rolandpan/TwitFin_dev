@@ -31,7 +31,7 @@ def main(*args, **kwargs):
     df = twitfin.x_days(df)
 
     # Transpose the datframe and set the x-day row as our new column labels
-    df = twitfin.x_transpose(df)
+    # df = twitfin.x_transpose(df)
 
     return df
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     # Execute example IO utilities
     # To write data to csv
-    df.to_csv('data/example.csv')
+    df.to_csv('data/standard-example.csv')
     # print('\nData saved to data/gspc.csv')
 
     # To read data from csv
