@@ -42,11 +42,12 @@ output/*/index.html
 docs/_build
 
 # Gists
-.gists
+gists
 
-# Environments
+# Environments and boxes
 venv
 .env
+.vagrant
 
 # Notebook checkpoints
 .ipynb_checkpoints
