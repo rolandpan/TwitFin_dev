@@ -43,6 +43,7 @@ if __name__ == "__main__":
     # Execute example IO utilities
     # To write data to csv
     df.to_csv('data/standard-example.csv')
+    print('Modified dataframe saved to: data/standard-example.csv')
     # print('\nData saved to data/gspc.csv')
 
     # To read data from csv
