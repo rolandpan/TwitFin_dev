@@ -10,7 +10,7 @@ import numpy as np
 import pandas as pd
 import Quandl
 import os
-from sqlalchemy import sqlalchemy  # from flask.ext.
+# from sqlalchemy import sqlalchemy  # from flask.ext.
 
 
 class twitfin(object):
