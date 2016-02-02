@@ -1,0 +1,8 @@
+__title__ = 'twitfin'
+__package_name__ = 'twitfin'
+__author__ = 'Your Name'
+__description__ = 'Description of your python package'
+__email__ = 'youremail@domain.com'
+__version__ = '0.1.0'
+__license__ = 'BSD'
+__copyright__ = 'Copyright 2016 Your Name'
