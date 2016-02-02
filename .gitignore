@@ -48,6 +48,7 @@ gists
 venv
 .env
 .vagrant
+.ansible
 
 # Notebook checkpoints
 .ipynb_checkpoints
