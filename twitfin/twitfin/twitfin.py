@@ -4,6 +4,7 @@
 # change log:
 # 2016-02-04 - RP
 #    altered functions: load(), long and short_sma() etc., enabled passing args w/o prompts
+#    in sign_sequence: got rid of consolidation to single column
 
 from __future__ import (
     absolute_import, division, print_function, with_statement,
@@ -106,8 +107,6 @@ def long_sma(df, column, *args, **kwargs):
     # will result in a column label of 'Close_20-day'.
     # The default label is constructed as follows:
     # SMA_{ target column }_{ period }-day
-    for key, value in kwargs.iteritems():
-        print("%s = %s" % (key, value))
     
     if 'period' in kwargs:
         period = kwargs['period']
@@ -161,6 +160,7 @@ def macd(df, column, *args, **kwargs):
     """Given a dataframe, a column name and a period the function
     returns a dataframe with new column with a simple moving average
     for the period."""
+    
     if 'period' in kwargs:
         period = kwargs['period']
     else:
@@ -237,6 +237,33 @@ def flag_swings(df, column, *args, **kwargs):
             pass
     return df
 
+def transpose_column(df, column, *args, **kwargs):
+    """Given a dataframe and column, returns df with added columns
+    of prior date data for the given period."""
+    
+    if 'period' in kwargs:
+        period = kwargs['period']
+    else:
+        period = int(raw_input("Enter the days prior to list the signs: "))
+        
+    # Trim null value artifacts in SMA columns
+    df = df.dropna()
+    # Create a temporary dataframe
+    tmp = df.copy()
+    # Determine the sign of each day and sum signs from prior days using the
+    # "x-day" notation
+    label0 = column + '-0'
+    tmp[label0] = df[column]
+    
+    # Shift rows down for lateral comparison depending on period
+    for i in range(1, period):
+        label = column +'-'+ str(i)
+        tmp[label] = tmp[label0].shift(i)
+    # get rid of NA rows
+    tmp2 = tmp.ix[(period -1):]
+    return tmp2
+
+
 def sign_sequence(df, column, *args, **kwargs):
     """Given a dataframe and column, returns a column with a list
     of prior signs for the given period."""
@@ -246,31 +273,36 @@ def sign_sequence(df, column, *args, **kwargs):
     else:
         period = int(raw_input("Enter the days prior to list the signs: "))
         
-    prior_signs_label = 'SignSequence_' + str(period) + '-days'
+    # prior_signs_label = 'SignSequence_' + str(period) + '-days'
     # Trim null value artifacts in SMA columns
     df = df.dropna()
     # Create a temporary dataframe
     tmp = df.copy()
     # Determine the sign of each day and sum signs from prior days using the
     # "x-day" notation as "sign-'reference day'"
-    tmp['sign-0'] = ['1' if x >= 0 else '-1' for x in df[column]]
+    label0 = column + '_sign-0'
+    tmp[label0] = ['1' if x >= 0 else '-1' for x in df[column]]
     # Shift rows down for lateral comparison depending on period
-    labels = ['sign-0']
+    # labels = ['sign-0']
     for i in range(1, period):
-        label = 'sign-' + str(i)
-        labels.append(label)
-        tmp[label] = tmp['sign-0'].shift(i)
+        label = column +'_sign-'+ str(i)
+        # labels.append(label)
+        tmp[label] = tmp[label0].shift(i)
+    # get rid of NA rows
     tmp2 = tmp.ix[(period -1):]
-    df2 = df.ix[(period -1):]
-    labels = labels[::-1]
-    try:
-        df2 = df2.copy()
-        df2[prior_signs_label] = tmp2[labels].apply(lambda x: ','.join(x), axis=1)
-    except Exception as e:
-        print(e)
-        if e =='SettingWithCopyWarning':
-            pass
-    return df2
+    return tmp2
+ 
+# Get rid of consolidation under one column    
+#    df2 = df.ix[(period -1):]
+#    labels = labels[::-1]
+#    try:
+#        df2 = df2.copy()
+#        df2[prior_signs_label] = tmp2[labels].apply(lambda x: ','.join(x), axis=1)
+#    except Exception as e:
+#        print(e)
+#        if e =='SettingWithCopyWarning':
+#            pass
+#    return df2
 
 def x_days(df):
     """Add a column with a descending counter."""
