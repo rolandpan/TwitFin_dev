@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# 
+# change log:
+# 2016-02-04 - RP
+#    altered functions: load(), long and short_sma() etc., enabled passing args w/o prompts
 
 from __future__ import (
     absolute_import, division, print_function, with_statement,
@@ -44,15 +48,30 @@ def load(*args, **kwargs):
     # Grab the Quandl token
     # token = os.environ.get('QUANDL_TOKEN')
     # if token is None:
-    token = raw_input("Enter Quandl token: ")
-    ticker = raw_input("Enter Quandl ticker symbol (or hit Enter for default of YAHOO/INDEX_GSPC): ")
+    
+    if 'token' in kwargs:
+        token = kwargs['token']
+    else:
+        token = raw_input("Enter Quandl token: ")
+    
+    if 'ticker' in kwargs:
+        ticker = kwargs['ticker']
+    else:
+        ticker = raw_input("Enter Quandl ticker symbol (or hit Enter for default of YAHOO/INDEX_GSPC): ")
+    
     if len(ticker) < 1:
         ticker = 'YAHOO/INDEX_GSPC'
     print(ticker)
-    start_date = raw_input("Enter start date as YYYY-MM-DD (or hit ENTER for default of 1990-01-01): ")
+    
+    if 'start_date' in kwargs:
+        start_date = kwargs['start_date']
+    else:
+        start_date = raw_input("Enter start date as YYYY-MM-DD (or hit ENTER for default of 1990-01-01): ")
+    
     if len(start_date) < 1:
         start_date = '1990-01-01'
     print(start_date)
+    
     # Call Quandl module, trim input by default from 1990 forward
     print('Pulling Quandl data...')
     df = Quandl.get(ticker, authtoken=token, trim_start=start_date)
@@ -87,7 +106,15 @@ def long_sma(df, column, *args, **kwargs):
     # will result in a column label of 'Close_20-day'.
     # The default label is constructed as follows:
     # SMA_{ target column }_{ period }-day
-    period = int(raw_input("Enter the period in days for the long SMA: "))
+    for key, value in kwargs.iteritems():
+        print("%s = %s" % (key, value))
+    
+    if 'period' in kwargs:
+        period = kwargs['period']
+    else:
+        period = int(raw_input("Enter the period in days for the long SMA: "))
+    # to add: default period = 26
+    
     if 'label' in kwargs:
         column_label = kwargs['label'] + '_' + str(period) + '-day'
     else:
@@ -99,7 +126,12 @@ def short_sma(df, column, *args, **kwargs):
     """Given a dataframe, a column name and a period the function
     returns a dataframe with new column with a simple moving average
     for the period."""
-    period = int(raw_input("Enter the period in days for the short SMA: "))
+    
+    if 'period' in kwargs:
+        period = kwargs['period']
+    else:
+        period = int(raw_input("Enter the period in days for the short SMA: "))
+        
     if 'label' in kwargs:
         column_label = kwargs['label'] + '_' + str(period) + '-day'
     else:
@@ -129,7 +161,11 @@ def macd(df, column, *args, **kwargs):
     """Given a dataframe, a column name and a period the function
     returns a dataframe with new column with a simple moving average
     for the period."""
-    period = int(raw_input("Enter the period in days for the SMA of the MACD: "))
+    if 'period' in kwargs:
+        period = kwargs['period']
+    else:
+        period = int(raw_input("Enter the period in days for the SMA of the MACD: "))
+        
     if 'label' in kwargs:
         column_label = kwargs['label'] + '_' + str(period) + '-day'
     else:
@@ -146,7 +182,11 @@ def flag_swings(df, column, *args, **kwargs):
     # 2nd parameter: target column
     # 3rd parameter: minimum swing period
     # TODO: describe default label and custom label options
-    period = int(raw_input("Enter the period in days to flag swings: "))
+    if 'period' in kwargs:
+        period = kwargs['period']
+    else:
+        period = int(raw_input("Enter the period in days to flag swings: "))
+    
     if 'label' in kwargs:
         # Append custom label with period days
         column_label = kwargs['label'] + '_' + str(period) + '-day'
@@ -200,7 +240,12 @@ def flag_swings(df, column, *args, **kwargs):
 def sign_sequence(df, column, *args, **kwargs):
     """Given a dataframe and column, returns a column with a list
     of prior signs for the given period."""
-    period = int(raw_input("Enter the days prior to list the signs: "))
+    
+    if 'period' in kwargs:
+        period = kwargs['period']
+    else:
+        period = int(raw_input("Enter the days prior to list the signs: "))
+        
     prior_signs_label = 'SignSequence_' + str(period) + '-days'
     # Trim null value artifacts in SMA columns
     df = df.dropna()
